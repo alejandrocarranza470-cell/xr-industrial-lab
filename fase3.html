@@ -2,8 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Fase 3 - Modelo CAD Integrado</title>
-  <!-- Importación de la librería A-Frame -->
+  <title>Fase 3 - Modelo CAD Integrado (WebXR AR)</title>
   <script src="https://cdn.jsdelivr.net/npm/aframe@1.4.1/dist/aframe-master.min.js"></script>
   <style>
     .back-btn {
@@ -22,21 +21,28 @@
   </style>
 </head>
 <body>
-  <!-- Botón flotante para regresar al menú principal -->
   <a href="index.html" class="back-btn">← Volver al Menú</a>
 
-  <a-scene>
-    <!-- Carga previa del modelo 3D (Asset Management) -->
+  <a-scene webxr="optionalFeatures: hit-test; requiredFeatures: local-floor;" 
+           ar-mode-ui="enabled: true" 
+           renderer="colorManagement: true;">
+    
     <a-assets>
       <a-asset-item id="modeloIndustrial" src="models/modelo.glb"></a-asset-item>
     </a-assets>
 
-    <!-- Entorno visual: Cielo y piso industrial -->
-    <a-sky color="#E8ECEF"></a-sky>
-    <a-plane position="0 0 -4" rotation="-90 0 0" width="14" height="14" color="#3A3D40"></a-plane>
+    <!-- Fondo y piso ocultos en modo AR -->
+    <a-sky color="#E8ECEF" hide-on-enter-ar></a-sky>
+    <a-plane position="0 0 -4" rotation="-90 0 0" width="14" height="14" color="#3A3D40" hide-on-enter-ar></a-plane>
+    
+    <!-- Luces para el renderizado CAD -->
+    <a-light type="ambient" color="#FFFFFF" intensity="1.2"></a-light>
+    <a-light type="directional" position="-1 4 2" intensity="1.5"></a-light>
 
-    <!-- Renderizado e inserción del modelo CAD optimizado -->
-    <a-entity gltf-model="#modeloIndustrial" position="0 0 -4" scale="1 1 1"></a-entity>
+    <a-entity camera look-controls wasd-controls position="0 1.6 3"></a-entity>
+
+    <!-- Modelo CAD -->
+    <a-entity gltf-model="#modeloIndustrial" position="0 0.5 -3" scale="0.01 0.01 0.01"></a-entity>
   </a-scene>
 </body>
 </html>
