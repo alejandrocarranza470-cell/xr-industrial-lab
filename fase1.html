@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Fase 1 - Escena Básica</title>
-  <!-- Librería A-Frame según la guía -->
+  <title>Fase 1 - Escena Básica (WebXR AR)</title>
+  <!-- Importación de la librería A-Frame -->
   <script src="https://cdn.jsdelivr.net/npm/aframe@1.4.1/dist/aframe-master.min.js"></script>
   <style>
     .back-btn {
@@ -11,21 +11,25 @@
       top: 10px;
       left: 10px;
       z-index: 999;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.75);
       color: white;
       padding: 10px 15px;
       text-decoration: none;
       border-radius: 5px;
       font-family: Arial, sans-serif;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <!-- Botón para volver al menú principal -->
   <a href="index.html" class="back-btn">← Volver al Menú</a>
 
-  <a-scene>
-    <!-- Primitivas geométricas indicadas en la guía -->
+  <!-- Configuración con soporte nativo de cámara WebXR AR -->
+  <a-scene webxr="optionalFeatures: hit-test; requiredFeatures: local-floor;" 
+           ar-mode-ui="enabled: true" 
+           renderer="colorManagement: true;">
+    
+    <!-- Primitivas geométricas con posiciones ajustadas -->
     <a-box position="0 1 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
     <a-sphere position="2 1 -4" radius="1" color="#EF2D5E"></a-sphere>
     <a-cylinder position="-2 1 -4" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
